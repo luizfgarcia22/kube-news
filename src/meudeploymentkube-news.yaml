@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-news
+spec:
+  selector:
+    matchLabels:
+      app: kube-news
+  template:
+    metadata:
+      labels:
+        app: kube-news
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+          ports:
+          - containerPort: 5432
+            name: http
+            protocol: TCP
+          env:
+          - name: POSTGRES_PASSWORD
+            value: admin
+          - name: POSTGRES_USER
+            value: admin
+          - name: POSTGRES_DB
+            value: kube-news
+
+
+  
